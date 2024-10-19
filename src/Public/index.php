@@ -22,7 +22,7 @@ $showResults = 'prod';
   <?php
   switch ($showResults) {
     case 'all':
-
+      
       break;
     case 'prod':
       require_once "./showAllProducts.php";

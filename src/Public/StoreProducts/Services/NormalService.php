@@ -2,10 +2,9 @@
 
 namespace App\Public\StoreProducts\Services;
 
-include "Service.php";
+include_once "Service.php";
 class NormalService extends Service
 {
-
   private float $basePrice;
   private string $manufacturer;
   private float $tax;
