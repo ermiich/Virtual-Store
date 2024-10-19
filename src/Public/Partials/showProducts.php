@@ -2,10 +2,19 @@
 
 namespace App\Public\Partials;
 
+
+use App\Public\StoreProducts\Perishable;
+use App\Public\StoreProducts\Product;
+
+
+require_once ".\StoreProducts\Perishable.php";
+require_once ".\StoreProducts\Product.php";
 require_once "storeItems.php";
 ?>
 <div class="itemsContainer">
-  <?php foreach ($storeProducts as $value): ?>
+  <?php foreach ($storeProducts as $value):
+    if ($value instanceof Product && !$value instanceof Perishable): ?>
+
   <div class="cardContainer">
     <h3 class="cardTitle"><?php echo $value->getName() ?></h3>
     <p class="cardDesc">
@@ -27,5 +36,8 @@ require_once "storeItems.php";
       <strong>Coste del envío: </strong><?php echo $value->getShippingCost() . ' €' ?>
     </p>
   </div>
-  <?php endforeach; ?>
+  <?php
+    endif;
+  endforeach;
+  ?>
 </div>

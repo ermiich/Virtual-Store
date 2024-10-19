@@ -22,7 +22,10 @@
   transition: transform .2s;
   display: flex;
   flex-direction: column;
-  
+}
+.cardContainer:hover{
+  transform: scale(1.1);
+  outline: 1px solid rgb(99, 99, 99);
 }
 .cardTitle{
   margin: 2%;

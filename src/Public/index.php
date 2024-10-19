@@ -3,6 +3,9 @@
 namespace App\Public;
 
 $showResults = 'prod';
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +14,8 @@ $showResults = 'prod';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda Virtual</title>
-  <link rel="stylesheet" type="text/css" href="./style/card.css">
-  <link rel="stylesheet" type="text/css" href="./style/base.css">
+  <link rel="stylesheet" type="text/css" href="./Style/card.css">
+  <link rel="stylesheet" type="text/css" href="./Style/base.css">
 </head>
 
 <body>
