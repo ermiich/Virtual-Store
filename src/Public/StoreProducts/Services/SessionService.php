@@ -7,6 +7,13 @@ class SessionService extends Service
 {
   private int $nSessions;
 
+  /**
+   * Session service constructor.
+   *
+   * @param  mixed $name
+   * @param  mixed $nSessions
+   * @return void
+   */
   public function __construct(string $name, int $nSessions)
   {
     parent::__construct($name);
@@ -14,7 +21,7 @@ class SessionService extends Service
   }
 
   /**
-   * add 1 Sessions
+   * Add 1 Session.
    *
    * @return void
    */
@@ -24,7 +31,7 @@ class SessionService extends Service
   }
 
   /**
-   * remove 1 Sessions
+   * Delete 1 Session.
    *
    * @return void
    */
@@ -32,17 +39,6 @@ class SessionService extends Service
   {
     $this->nSessions--;
   }
-
-  /**
-   * show Sessions
-   *
-   * @return void
-   */
-  public function  showSession()
-  {
-    return $this->nSessions + " " + parent::getName();
-  }
-
 
 
   /**

@@ -16,7 +16,7 @@ class Service
     $this->name = $name;
   }
   /**
-   * Return event name.
+   * Return name.
    *
    * @return string
    */
@@ -25,7 +25,7 @@ class Service
     return $this->name;
   }
   /**
-   * Set event name.
+   * Set name.
    *
    * @param string $name
    */

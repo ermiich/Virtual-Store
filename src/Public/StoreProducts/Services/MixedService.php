@@ -11,6 +11,13 @@ class MixedService extends Service
   public int $nSessions;
   private $eventDate = null;
 
+  /**
+   * Mixed service constructor.
+   *
+   * @param  mixed $name
+   * @param  mixed $nSessions
+   * @return void
+   */
   public function __construct(string $name, int $nSessions)
   {
     parent::__construct($name);
@@ -32,7 +39,7 @@ class MixedService extends Service
   }
 
   /**
-   * add Sessions
+   * Add 1 Session
    *
    * @return void
    */
@@ -42,7 +49,7 @@ class MixedService extends Service
   }
 
   /**
-   * delete Sessions
+   * Remove 1 Session
    *
    * @return void
    */
@@ -53,7 +60,7 @@ class MixedService extends Service
   /**
    * Return number of sessions.
    *
-   * @return string
+   * @return int
    */
   public function getnSession(): int
   {
@@ -63,20 +70,11 @@ class MixedService extends Service
   /**
    * Set number of sessions.
    *
-   * @param string $nSessions
+   * @param int $nSessions
    */
   public function setnSession(int $nSessions)
   {
     $this->nSessions = $nSessions;
-  }
-  /**
-   * show amount of Sessions and the name
-   *
-   * @return void
-   */
-  public function  showSessions()
-  {
-    return $this->nSessions . " " . parent::getName() . " el mes de " . $this->eventDate->format('F');
   }
 
   /**

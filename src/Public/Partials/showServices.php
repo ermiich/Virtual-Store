@@ -49,6 +49,9 @@ require_once "storeItems.php";
     <p class="cardDesc">
       <strong>Dias restantes: </strong><?php echo $value->getDaysLeft() ?>
     </p>
+    <p class="cardDesc">
+      <strong>Incremento: </strong><?php echo ($value->getIncrement() * 100) . ' %' ?>
+    </p>
     <p class="cardDesc" style="text-align: center;">
       <strong style="color:green">No caducado</strong>
     </p>
@@ -80,7 +83,6 @@ require_once "storeItems.php";
     //  FIN
     // =====
     ?>
-
 
   <?php
     // ==================
@@ -119,9 +121,6 @@ require_once "storeItems.php";
     //  FIN
     // =====
     ?>
-
-
-
 
   <?php
     // ==================

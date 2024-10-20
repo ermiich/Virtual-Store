@@ -9,6 +9,15 @@ class NormalService extends Service
   private string $manufacturer;
   private float $tax;
 
+  /**
+   * Normal service constructor.
+   *
+   * @param  mixed $name
+   * @param  mixed $basePrice
+   * @param  mixed $manufacturer
+   * @param  mixed $tax
+   * @return void
+   */
   public function __construct(string $name, float $basePrice, string $manufacturer, $tax = 0.07)
   {
     parent::__construct($name);
@@ -21,12 +30,10 @@ class NormalService extends Service
    *
    * @return float
    */
-  function getSalePrice()
+  function getSalePrice(): float
   {
     return round($this->basePrice + ($this->basePrice * $this->tax), 2);
   }
-
-
 
   /**
    * Return service base price.
@@ -67,7 +74,6 @@ class NormalService extends Service
   {
     $this->manufacturer = $manufacturer;
   }
-
 
   /**
    * Get the servivce tax.

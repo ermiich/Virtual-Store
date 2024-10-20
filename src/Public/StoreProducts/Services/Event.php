@@ -10,10 +10,78 @@ use \DateInterval;
 class Event extends Service
 {
   private $eventDate = null;
-  public function __construct(string $name)
+  private float $firstDiscount = 0.20;
+  private float $secondDiscount = 0.50;
+  private float $basePrice;
+  private float $tax;
+
+  /**
+   * Event Constructor.
+   *
+   * @param  mixed $name
+   * @return void
+   */
+  public function __construct(string $name, float $basePrice, float $tax = 0.07)
   {
     parent::__construct($name);
+    $this->basePrice = $basePrice;
+    $this->tax = $tax;
     $this->eventDate = DateTime::createFromFormat('Y-m-d', '0-0-0');
+  }
+  /**
+   * Return sale price.
+   *
+   * @return float
+   */
+  function getSalePrice(): float
+  {
+    return round($this->getBasePrice() + ($this->getBasePrice() * $this->tax), 2);
+  }
+  /**
+   * Return discount.
+   *
+   * @return float
+   */
+  public function getIncrement(): float
+  {
+    $days = $this->getdaysToExpire();
+    if ($days <= 7) {
+      if ($days == 1) {
+        return $this->secondDiscount;
+      }
+      return $this->firstDiscount;
+    }
+    return 0;
+  }
+  /**
+   * Returns number of days to Expire.
+   *
+   * @return int 
+   */
+  public function getdaysToExpire(): int
+  {
+    $interval = $this->dateDiff();
+    return ((int)$interval->days);
+  }
+
+  /**
+   * Return base price with discount.
+   *
+   * @return float
+   */
+  public function getBasePrice(): float
+  {
+
+    return $this->basePrice + ($this->basePrice * $this->getIncrement());
+  }
+  /**
+   * Set the value of basePrice
+   *
+   * @return  self
+   */
+  public function setBasePrice($basePrice)
+  {
+    $this->basePrice = $basePrice;
   }
   /**
    * Set the expiration Date.
@@ -42,14 +110,14 @@ class Event extends Service
     }
   }
   /**
-   * Check if event has happened
+   * Return if event has happened.
    *
    * @return bool
    */
   public function isEventCompleted(): bool
   {
     $interval = $this->dateDiff();
-    if ($interval->invert == 1 || $interval->d <= 0) {
+    if ($interval->invert == 1) {
       return true;
     }
     return false;

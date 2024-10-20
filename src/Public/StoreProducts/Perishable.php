@@ -27,11 +27,21 @@ class Perishable extends Product
     $this->expirationDate = DateTime::createFromFormat('Y-m-d', '0-0-0');
   }
 
-
+  /**
+   * Return sale price.
+   *
+   * @return float
+   */
   function getSalePrice(): float
   {
     return round($this->getBasePrice() + ($this->getBasePrice() * parent::getTax()), 2);
   }
+
+  /**
+   * Return discount.
+   *
+   * @return float
+   */
   public function getDiscount(): float
   {
     $days = $this->getdaysToExpire();
@@ -43,11 +53,16 @@ class Perishable extends Product
     }
     return 0;
   }
+  /**
+   * Return base price with discount.
+   *
+   * @return float
+   */
   public function getBasePrice(): float
   {
     $basePrice = parent::getBasePrice();
 
-    return $basePrice - ($basePrice * $this->firstDiscount);
+    return $basePrice - ($basePrice * $this->getDiscount());
   }
   /**
    * Set the expiration Date.

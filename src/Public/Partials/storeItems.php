@@ -46,15 +46,13 @@ $prodPerishable3->setExpirationDate(15, 11, 2024);
     - 2 servicios normales
 */
 
-
-
-$event1 = new Event("Danza Contemporánea");
+$event1 = new Event("Danza Contemporánea", 49.99);
 $event1->setExpirationDate(4, 9, 2024);
 
-$event2 = new Event("Dormir");
+$event2 = new Event("Concierto de rock", 79.95);
 $event2->setExpirationDate(21, 10, 2024);
 
-$event3 = new Event("Dormir2");
+$event3 = new Event("Festival", 120.00);
 $event3->setExpirationDate(15, 11, 2024);
 
 

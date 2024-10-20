@@ -24,7 +24,7 @@ class Product
    * @param  float $volume
    * @param  float $tax
    */
-  public function __construct(string $name, float $basePrice, string $manufacturer, float $weight, float $volume, $tax = 0.07)
+  public function __construct(string $name, float $basePrice, string $manufacturer, float $weight, float $volume, float $tax = 0.07)
   {
     $this->name = $name;
     $this->basePrice = $basePrice;
