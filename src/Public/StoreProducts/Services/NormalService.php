@@ -21,9 +21,9 @@ class NormalService extends Service
    *
    * @return float
    */
-  function salePrice()
+  function getSalePrice()
   {
-    return $this->basePrice + ($this->basePrice * $this->tax);
+    return round($this->basePrice + ($this->basePrice * $this->tax), 2);
   }
 
 

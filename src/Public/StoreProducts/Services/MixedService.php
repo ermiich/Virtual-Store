@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Public\StoreProducts\Services;
 
 use \DateTime;
+use \DateInterval;
 
 include_once "Service.php";
-class MixedService extends Service{
+class MixedService extends Service
+{
   public int $nSessions;
   private $eventDate = null;
 
@@ -15,54 +18,75 @@ class MixedService extends Service{
     $this->nSessions = $nSessions;
   }
 
-    /**
+  /**
    * Set the expiration Date.
    *
    * @param  int $day   
    * @param  int $month 
    * @param  int $year  
    */
-  public function setExpDate(int $day, int $month, int $year)
+  public function setExpirationDate(int $day, int $month, int $year)
   {
     $this->eventDate->setTime(0, 0, 0);
     $this->eventDate->setDate($year, $month, $day);
   }
-  
+
   /**
    * add Sessions
    *
    * @return void
    */
-  public function addSessions () {
-    $this->nSession++;
+  public function addSession()
+  {
+    $this->nSessions++;
   }
-  
+
   /**
    * delete Sessions
    *
    * @return void
    */
-  public function deleteSessions () {
-    $this->nSession--;
+  public function deleteSession()
+  {
+    $this->nSessions--;
   }
-  
+  /**
+   * Return number of sessions.
+   *
+   * @return string
+   */
+  public function getnSession(): int
+  {
+    return $this->nSessions;
+  }
+
+  /**
+   * Set number of sessions.
+   *
+   * @param string $nSessions
+   */
+  public function setnSession(int $nSessions)
+  {
+    $this->nSessions = $nSessions;
+  }
   /**
    * show amount of Sessions and the name
    *
    * @return void
    */
-  public function  showSessions () {
-    return $this->nSessions . " " . getName() . " el mes de " . $this->eventDate->format('F');
+  public function  showSessions()
+  {
+    return $this->nSessions . " " . parent::getName() . " el mes de " . $this->eventDate->format('F');
   }
 
-    /**
+  /**
    * Returns number of days left.
    *
    * @return int 
    */
-  public function daysLeft(): int
+  public function getDaysLeft(): int
   {
-    if (!$this->isMixCompleted()) {
+    if (!$this->isMixedCompleted()) {
       $interval = $this->dateDiff();
       return ((int)$interval->days);
     } else {
@@ -70,12 +94,12 @@ class MixedService extends Service{
     }
   }
 
-    /**
+  /**
    * Check if event has happened
    *
    * @return bool
    */
-  public function isMixCompleted(): bool
+  public function isMixedCompleted(): bool
   {
     $interval = $this->dateDiff();
     if ($interval->invert == 1 || $interval->d <= 0) {
@@ -84,7 +108,7 @@ class MixedService extends Service{
     return false;
   }
 
-    /**
+  /**
    * Return the current date.
    *
    * @return DateTime
@@ -95,27 +119,18 @@ class MixedService extends Service{
     return $aux;
   }
 
-    /**
-   * Return mixed name.
+  /**
+   * Return the difference between current date and event date.
    *
-   * @return string
+   * @return DateInterval
    */
-  public function getName(): string
+  public function dateDiff(): DateInterval
   {
-    return $this->name;
+    $interval = $this->getCurrDate()->diff($this->getEventDate());
+    return $interval;
   }
 
   /**
-   * Set mixed name.
-   *
-   * @param string $name
-   */
-  public function setName(string $name)
-  {
-    $this->name = $name;
-  }
-
-    /**
    * Return mixed date.
    *
    * @return DateTime

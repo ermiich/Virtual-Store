@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Public\StoreProducts\Services;
 
-use \DateTime;
-
 include_once "Service.php";
+
+use \DateTime;
+use \DateInterval;
+
 class Event extends Service
 {
   private $eventDate = null;
@@ -19,7 +22,7 @@ class Event extends Service
    * @param  int $month 
    * @param  int $year  
    */
-  public function setExpDate(int $day, int $month, int $year)
+  public function setExpirationDate(int $day, int $month, int $year)
   {
     $this->eventDate->setTime(0, 0, 0);
     $this->eventDate->setDate($year, $month, $day);
@@ -29,7 +32,7 @@ class Event extends Service
    *
    * @return int 
    */
-  public function daysLeft(): int
+  public function getDaysLeft(): int
   {
     if (!$this->isEventCompleted()) {
       $interval = $this->dateDiff();
@@ -80,25 +83,5 @@ class Event extends Service
   public function getEventDate(): DateTime
   {
     return $this->eventDate;
-  }
-
-  /**
-   * Return event name.
-   *
-   * @return string
-   */
-  public function getName(): string
-  {
-    return $this->name;
-  }
-
-  /**
-   * Set event name.
-   *
-   * @param string $name
-   */
-  public function setName(string $name)
-  {
-    $this->name = $name;
   }
 }

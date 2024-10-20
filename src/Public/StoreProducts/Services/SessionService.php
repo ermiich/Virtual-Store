@@ -3,7 +3,8 @@
 namespace App\Public\StoreProducts\Services;
 
 include_once "Service.php";
-class SesionService extends Service{
+class SessionService extends Service
+{
   private int $nSessions;
 
   public function __construct(string $name, int $nSessions)
@@ -11,56 +12,41 @@ class SesionService extends Service{
     parent::__construct($name);
     $this->nSessions = $nSessions;
   }
-  
+
   /**
-   * add Sessions
+   * add 1 Sessions
    *
    * @return void
    */
-  public function addSessions () {
-    $this->nSession++;
+  public function addSession()
+  {
+    $this->nSessions++;
   }
-  
+
   /**
-   * delete Sessions
+   * remove 1 Sessions
    *
    * @return void
    */
-  public function deleteSessions () {
-    $this->nSession--;
+  public function deleteSession()
+  {
+    $this->nSessions--;
   }
-  
+
   /**
    * show Sessions
    *
    * @return void
    */
-  public function  showSessions () {
-    return $this->nSession + " " +$this->name;
+  public function  showSession()
+  {
+    return $this->nSessions + " " + parent::getName();
   }
 
-    /**
-   * Return session name.
-   *
-   * @return string
-   */
-  public function getName(): string
-  {
-    return $this->name;
-  }
+
 
   /**
-   * Set session name.
-   *
-   * @param string $name
-   */
-  public function setName(string $name)
-  {
-    $this->name = $name;
-  }
-
-      /**
-   * Return session number of sessions.
+   * Return number of sessions.
    *
    * @return string
    */
@@ -69,14 +55,13 @@ class SesionService extends Service{
     return $this->nSessions;
   }
 
-    /**
-   * Set session number of sessions.
+  /**
+   * Set number of sessions.
    *
-   * @param string $name
+   * @param string $nSessions
    */
   public function setnSession(int $nSessions)
   {
-    $this->name = $name;
+    $this->nSessions = $nSessions;
   }
-
 }

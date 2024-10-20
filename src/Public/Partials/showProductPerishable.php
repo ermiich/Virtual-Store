@@ -3,8 +3,6 @@
 namespace App\Public\Partials;
 
 use App\Public\StoreProducts\Perishable;
-use App\Public\StoreProducts\Product;
-
 
 require_once ".\StoreProducts\Perishable.php";
 require_once ".\StoreProducts\Product.php";
@@ -15,7 +13,9 @@ require_once "storeItems.php";
     if ($value instanceof Perishable): ?>
       <div class="cardContainer">
         <h3 class="cardTitle"><?php echo $value->getName() ?></h3>
-
+        <p class="cardDesc">
+          <strong>Tipo: </strong> Producto perecedero
+        </p>
         <p class="cardDesc">
           <strong>Fabricante: </strong><?php echo $value->getManufacturer() ?>
         </p>
@@ -49,6 +49,7 @@ require_once "storeItems.php";
         </p>
 
       </div>
-  <?php endif;
-  endforeach; ?>
+    <?php endif; ?>
+
+  <?php endforeach; ?>
 </div>
